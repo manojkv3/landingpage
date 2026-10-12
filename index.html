@@ -1,140 +1,401 @@
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>this website is under construction</title>
-    <style>
-        @font-face {
-            font-family: 'Arial Narrow';
-            src: url('fonts/arial-narrow.ttf') format('truetype');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>this website is under construction</title>
 
-        @font-face {
-            font-family: 'Arial Narrow';
-            src: url('fonts/arial-narrow-bold.ttf') format('truetype');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
+  <style>
+    @font-face {
+      font-family: 'Arial Narrow';
+      src: url('fonts/arial-narrow.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Arial Narrow';
+      src: url('fonts/arial-narrow-bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Arial Narrow';
+      src: url('fonts/arial-narrow-italic.ttf') format('truetype');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Arial Narrow';
+      src: url('fonts/arial-narrow-bold-italic.ttf') format('truetype');
+      font-weight: 700;
+      font-style: italic;
+      font-display: swap;
+    }
 
-        @font-face {
-            font-family: 'Arial Narrow';
-            src: url('fonts/arial-narrow-italic.ttf') format('truetype');
-            font-weight: 400;
-            font-style: italic;
-            font-display: swap;
-        }
+    :root {
+      --blue: #0000ff;
+      --green: #00c000;
+      --page-x: 0px;
+      --page-y: 0px;
+    }
 
-        @font-face {
-            font-family: 'Arial Narrow';
-            src: url('fonts/arial-narrow-bold-italic.ttf') format('truetype');
-            font-weight: 700;
-            font-style: italic;
-            font-display: swap;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    html {
+      min-height: 100%;
+      background: #fff;
+    }
 
-        body {
-            font-family: 'Arial Narrow', Arial, sans-serif;
-            background-color: #ffffff;
-            color: #0000ff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            text-align: center;
-        }
+    body {
+      position: relative;
+      isolation: isolate;
+      min-height: 100svh;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(1rem, 3vw, 2.5rem);
+      text-align: center;
+      font-family: 'Arial Narrow', Arial, sans-serif;
+      background: #fff;
+      color: var(--blue);
+    }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 960px;
-        }
+    /* The page itself gently follows the pointer. */
+    .scene {
+      position: relative;
+      z-index: 2;
+      width: min(100%, 1200px);
+      transform: translate3d(var(--page-x), var(--page-y), 0);
+      transition: transform 350ms cubic-bezier(.2,.7,.2,1);
+      will-change: transform;
+    }
 
-        .title {
-            font-family: 'Arial Narrow', Arial, sans-serif;
-            font-size: clamp(2.5rem, 6.5vw, 4.8rem);
-            font-weight: 400;
-            color: #0000ff;
-            line-height: 1.05;
-            letter-spacing: -0.01em;
-            margin-bottom: 0.4rem;
-        }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-inline: auto;
+    }
 
-        .subtitle {
-            font-family: 'Arial Narrow', Arial, sans-serif;
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            font-weight: 400;
-            color: #00c000;
-            margin-bottom: 2rem;
-        }
+    .title {
+      max-width: 100%;
+      font-family: 'Arial Narrow', Arial, sans-serif;
+      font-size: clamp(2.15rem, 6.5vw, 5.1rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -.025em;
+      color: var(--blue);
+      text-wrap: balance;
+      margin-bottom: .4rem;
+    }
 
-        .retro-btn {
-            font-family: 'Arial Narrow', Arial, sans-serif;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
-            padding: 0.5rem 1.4rem;
-            font-size: 1.15rem;
-            font-weight: bold;
-            color: #000000;
-            background: linear-gradient(180deg, #e6e6e6 0%, #c4c4c4 100%);
-            border: 1px solid #000000;
-            box-shadow: inset 1px 1px 0px #ffffff, inset -1px -1px 0px #707070;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background 0.1s ease;
-        }
+    .subtitle {
+      display: inline-block;
+      max-width: 100%;
+      font-size: clamp(1.1rem, 2.8vw, 1.8rem);
+      line-height: 1.2;
+      font-weight: 400;
+      color: var(--green);
+      margin-bottom: clamp(1.4rem, 3vw, 2rem);
+      text-decoration: none;
+    }
 
-        .retro-btn:hover {
-            background: linear-gradient(180deg, #f2f2f2 0%, #d0d0d0 100%);
-        }
+    .subtitle:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
 
-        .retro-btn:active {
-            background: linear-gradient(180deg, #b8b8b8 0%, #d8d8d8 100%);
-            box-shadow: inset -1px -1px 0px #ffffff, inset 1px 1px 0px #707070;
-        }
+    .retro-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      min-height: 44px;
+      padding: .55rem 1.4rem;
+      max-width: 100%;
+      font-family: 'Arial Narrow', Arial, sans-serif;
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      font-weight: 700;
+      color: #000;
+      background: linear-gradient(180deg, #e6e6e6 0%, #c4c4c4 100%);
+      border: 1px solid #000;
+      box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #707070;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .1s ease, transform .15s ease;
+    }
 
-        .folder-icon {
-            width: 18px;
-            height: 13px;
-            display: inline-block;
-            vertical-align: middle;
-        }
-        a{
-            text-decoration: none;
-        }
-    </style>
+    .retro-btn:hover {
+      background: linear-gradient(180deg, #f2f2f2 0%, #d0d0d0 100%);
+      transform: translateY(-2px);
+    }
+
+    .retro-btn:active {
+      background: linear-gradient(180deg, #b8b8b8 0%, #d8d8d8 100%);
+      box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #707070;
+      transform: translateY(0);
+    }
+
+    .folder-icon {
+      flex: 0 0 auto;
+      width: 18px;
+      height: 13px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    a { -webkit-tap-highlight-color: transparent; }
+
+    /* Large, movable pixel-art decorations. Keep the image files in /assets. */
+    .floating-icon {
+      --rotation: 0deg;
+      --move-x: 0px;
+      --move-y: 0px;
+      position: fixed;
+      left: var(--x);
+      top: var(--y);
+      width: clamp(68px, 10.8vw, 145px);
+      height: auto;
+      z-index: 5;
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-user-drag: none;
+      transform: translate3d(var(--move-x), var(--move-y), 0) rotate(var(--rotation));
+      transform-origin: center;
+      transition: filter .2s ease, scale .2s ease;
+      will-change: transform;
+    }
+
+    .floating-icon img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+      image-rendering: pixelated;
+    }
+
+    .floating-icon:hover {
+      scale: 1.06;
+      filter: drop-shadow(0 4px 3px rgb(0 0 255 / 10%));
+    }
+
+    .floating-icon.dragging {
+      cursor: grabbing;
+      scale: 1.08;
+      z-index: 20;
+      transition: none;
+    }
+
+    /* Give each decoration a different size, like the reference. */
+    .icon-mug { width: clamp(65px, 8vw, 112px); }
+    .icon-star { width: clamp(80px, 10.8vw, 145px); }
+    .icon-disc { width: clamp(78px, 8.6vw, 118px); }
+    .icon-warning { width: clamp(85px, 10vw, 138px); }
+    .icon-soundwave { width: clamp(110px, 17vw, 230px); }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 1.1rem;
+      }
+
+      .scene {
+        width: 100%;
+      }
+
+      .title {
+        font-size: clamp(2rem, 8.4vw, 3.6rem);
+        max-width: 95%;
+      }
+
+      .subtitle {
+        font-size: clamp(1.05rem, 4.3vw, 1.45rem);
+        margin-bottom: 1.5rem;
+      }
+
+      .floating-icon {
+        width: clamp(55px, 15vw, 92px);
+      }
+
+      .icon-mug { width: clamp(48px, 12vw, 75px); }
+      .icon-star { width: clamp(60px, 16vw, 100px); }
+      .icon-disc { width: clamp(58px, 14vw, 88px); }
+      .icon-warning { width: clamp(62px, 16vw, 98px); }
+      .icon-soundwave { width: clamp(85px, 22vw, 145px); }
+    }
+
+    @media (max-width: 420px) {
+      .title {
+        font-size: clamp(1.8rem, 8vw, 2.4rem);
+      }
+
+      .retro-btn {
+        padding: .55rem 1rem;
+        font-size: 1rem;
+      }
+
+      /* Keep icons toward the edges so the message remains readable. */
+      .icon-mug { --x: 4%; --y: 15%; }
+      .icon-star { --x: 73%; --y: 8%; }
+      .icon-disc { --x: 79%; --y: 27%; }
+      .icon-warning { --x: 3%; --y: 76%; }
+      .icon-soundwave { --x: 60%; --y: 83%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scene,
+      .floating-icon,
+      .retro-btn {
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
-<body cz-shortcut-listen="true">
-    <main class="container">
-       
-        <h1 class="title">this website is under construction</h1>
-        <a href="https://portfolio.manojj.in" class="subtitle">check out my portfolio instead → </a>
-        <a href="https://portfolio.manojj.in" class="retro-btn">
-            <svg class="folder-icon" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 2.5C1 1.67157 1.67157 1 2.5 1H6.25L8.25 3H15.5C16.3284 3 17 3.67157 17 4.5V10.5C17 11.3284 16.3284 12 15.5 12H2.5C1.67157 12 1 11.3284 1 10.5V2.5Z" stroke="black" stroke-width="1.5" fill="none"></path>
-            </svg>
-            portfolio.manojj.in
-        </a>
-    </main>
+<body>
+  <!-- Update these paths if your image files are stored somewhere else. -->
+  <div class="floating-icon icon-mug" style="--x: 5%; --y: 20%; --rotation: -8deg;" aria-label="Draggable coffee mug">
+    <img src="mug.png" alt="" draggable="false">
+  </div>
+  <div class="floating-icon icon-star" style="--x: 42%; --y: 2%; --rotation: 4deg;" aria-label="Draggable star">
+    <img src="star.png" alt="" draggable="false">
+  </div>
+  <div class="floating-icon icon-disc" style="--x: 82%; --y: 13%; --rotation: 10deg;" aria-label="Draggable disc">
+    <img src="disc.png" alt="" draggable="false">
+  </div>
+  <div class="floating-icon icon-warning" style="--x: 82%; --y: 68%; --rotation: -3deg;" aria-label="Draggable warning icon">
+    <img src="warning.png" alt="" draggable="false">
+  </div>
+  <div class="floating-icon icon-soundwave" style="--x: 23%; --y: 80%; --rotation: 0deg;" aria-label="Draggable soundwave">
+    <img src="spotify-soundwave.png" alt="" draggable="false">
+  </div>
 
+  <main class="scene">
+    <div class="container">
+      <h1 class="title">this website is under construction</h1>
+      <a href="https://portfolio.manojj.in/" class="subtitle">check out my portfolio instead →</a>
+      <a href="https://portfolio.manojj.in/" class="retro-btn">
+        <svg class="folder-icon" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M1 2.5C1 1.67157 1.67157 1 2.5 1H6.25L8.25 3H15.5C16.3284 3 17 3.67157 17 4.5V10.5C17 11.3284 16.3284 12 15.5 12H2.5C1.67157 12 1 11.3284 1 10.5V2.5Z" stroke="black" stroke-width="1.5" fill="none"/>
+        </svg>
+        portfolio.manojj.in
+      </a>
+    </div>
+  </main>
 
+  <script>
+    const icons = [...document.querySelectorAll('.floating-icon')];
+    const scene = document.querySelector('.scene');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    // Pointer movement creates a gentle layered/parallax floating effect.
+    let pointerX = 0;
+    let pointerY = 0;
+    let rafId = null;
 
+    function updateParallax() {
+      icons.forEach((icon, index) => {
+        if (icon.classList.contains('dragging')) return;
 
+        const depth = 7 + (index % 4) * 4;
+        const x = pointerX * depth;
+        const y = pointerY * depth;
+        icon.style.setProperty('--parallax-x', `${x}px`);
+        icon.style.setProperty('--parallax-y', `${y}px`);
 
-<span id="PING_CONTENT_PUSH_NOTIFICATION" style="display: none;"></span></body></html>
+        const dragX = Number(icon.dataset.dragX || 0);
+        const dragY = Number(icon.dataset.dragY || 0);
+        icon.style.setProperty('--move-x', `${dragX + x}px`);
+        icon.style.setProperty('--move-y', `${dragY + y}px`);
+      });
+
+      scene.style.setProperty('--page-x', `${pointerX * -5}px`);
+      scene.style.setProperty('--page-y', `${pointerY * -5}px`);
+      rafId = null;
+    }
+
+    window.addEventListener('pointermove', (event) => {
+      // On touch devices, don't make the whole page chase the finger.
+      if (event.pointerType === 'touch' || reduceMotion) return;
+
+      pointerX = (event.clientX / window.innerWidth - 0.5) * 2;
+      pointerY = (event.clientY / window.innerHeight - 0.5) * 2;
+
+      if (!rafId) rafId = requestAnimationFrame(updateParallax);
+    }, { passive: true });
+
+    window.addEventListener('pointerleave', () => {
+      pointerX = 0;
+      pointerY = 0;
+      if (!rafId) rafId = requestAnimationFrame(updateParallax);
+    });
+
+    // Pointer Events support mouse, touch, and stylus dragging.
+    icons.forEach((icon) => {
+      let startX = 0;
+      let startY = 0;
+      let originX = 0;
+      let originY = 0;
+
+      icon.addEventListener('pointerdown', (event) => {
+        if (event.pointerType === 'mouse' && event.button !== 0) return;
+
+        const rect = icon.getBoundingClientRect();
+        startX = event.clientX;
+        startY = event.clientY;
+        originX = Number(icon.dataset.dragX || 0);
+        originY = Number(icon.dataset.dragY || 0);
+
+        // Account for current parallax so the icon doesn't jump on drag start.
+        icon.dataset.dragX = originX;
+        icon.dataset.dragY = originY;
+        icon.classList.add('dragging');
+        icon.setPointerCapture(event.pointerId);
+        event.preventDefault();
+      });
+
+      icon.addEventListener('pointermove', (event) => {
+        if (!icon.classList.contains('dragging')) return;
+
+        const x = originX + event.clientX - startX;
+        const y = originY + event.clientY - startY;
+        icon.dataset.dragX = x;
+        icon.dataset.dragY = y;
+        icon.style.setProperty('--move-x', `${x}px`);
+        icon.style.setProperty('--move-y', `${y}px`);
+      });
+
+      const stopDragging = () => {
+        if (!icon.classList.contains('dragging')) return;
+        icon.classList.remove('dragging');
+        // Parallax resumes from the current pointer position after dragging.
+        updateParallax();
+      };
+
+      icon.addEventListener('pointerup', stopDragging);
+      icon.addEventListener('pointercancel', stopDragging);
+      icon.addEventListener('lostpointercapture', stopDragging);
+    });
+
+    // Recalculate the subtle pointer effect after viewport changes.
+    window.addEventListener('resize', () => {
+      if (!reduceMotion) updateParallax();
+    });
+  </script>
+</body>
+</html>
